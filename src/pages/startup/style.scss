@@ -1,0 +1,27 @@
+@import '../../scss/colors';
+
+.startup {
+    margin: 0;
+    padding: 0 2.5em;
+
+    height: 100vh;
+
+    background-color: $rolezeiro-pink;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+
+    #startup__title {
+        text-align: center;
+
+        font-size: 23px;
+        font-weight: bold;
+        color: $showtime-white;
+        white-space: nowrap;
+
+        padding-top: 41px;
+    }
+}

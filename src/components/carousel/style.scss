@@ -1,0 +1,22 @@
+.carousel {
+
+    .carousel__inner {
+        display: flex;
+        align-items: center;
+    }
+
+    .inner__image {
+        img {
+            display: block;
+
+            object-fit: cover;
+
+            width: 230px;
+            height: 230px;
+
+            margin: 0 1.5em;
+
+            border-radius: 1em;
+        }
+    }
+}
