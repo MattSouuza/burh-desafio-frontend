@@ -49,15 +49,15 @@ function Carousel({ images }: CarouselProps) {
     }
 
     return (
-        <div {...handleSwipe}>
+        <div {...handleSwipe} className="swipeable">
             <motion.section
-                className="carousel"
+                className="swipeable__carousel"
                 ref={carousel}
             >
-                <motion.div className="carousel__inner">
+                <motion.section className="carousel__inner">
                     {
                         images.map((image, index) => (
-                            <motion.div
+                            <motion.figure
                                 className={`inner__image`}
                                 initial={{ scale: 0 }}
                                 animate={{
@@ -73,20 +73,23 @@ function Carousel({ images }: CarouselProps) {
                                 key={index}
                             >
                                 <img className={handleSelectedImageStyle(index)} src={image} alt="Imagem de um evento recente." />
-                            </motion.div>
+                            </motion.figure>
                         ))}
-                </motion.div>
+                </motion.section>
+
+                <section className="carousel__sliders">
+                    {images.map((_, index) => {
+                        return (
+                            <button className={`button-container__button${index !== targetedPosition ? "--unselected" : "--selected"}`} onClick={() => {
+                                    if (index !== targetedPosition) {
+                                        setTargetedPosition(index);
+                                    }
+                                }} />
+                        );
+                    })}
+                </section>
 
             </motion.section>
-            <section className="carousel__sliders">
-                {images.map((_, index) => {
-                    return <Button type="button-secondary" text=" " handleClick={() => {
-                        if (index !== targetedPosition) {
-                            setTargetedPosition(index);
-                        }
-                    }} />
-                })}
-            </section>
         </div>
     );
 }

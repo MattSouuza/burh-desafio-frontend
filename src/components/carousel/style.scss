@@ -1,8 +1,18 @@
-.carousel {
+@import '../../scss/colors';
+
+.swipeable {
+    width: fit-content;
+}
+
+.swipeable__carousel {
+
+    margin-top: 35px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    width: 100%;
 
     .carousel__inner {
         display: flex;
@@ -19,7 +29,9 @@
         position: absolute;
 
         .inner__image__selected {
-
+            -moz-box-shadow: 0 0 70px #ffffffdf;
+            -webkit-box-shadow: 0 0 70px #ffffffdf;
+            box-shadow: 0 0 70px #ffffffdf;
         }
 
         .inner__image__unselected {
@@ -37,9 +49,38 @@
             width: 230px;
             height: 230px;
 
-            margin: 0 .5em;
-
             border-radius: 1em;
+        }
+    }
+
+    .carousel__sliders {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        margin-top: 36px;
+
+        width: 70%;
+
+        .button-container__button--selected {
+            width: 50px;
+            height: 23px;
+
+            border: none;
+            border-radius: .5em;
+
+            background-color: $showtime-white;
+        }
+
+        .button-container__button--unselected {
+            width: 26px;
+            height: 14px;
+
+            border: none;
+            border-radius: .25em;
+
+            background-color: $showtime-white;
+            opacity: 60%;
         }
     }
 }
