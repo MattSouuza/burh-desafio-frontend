@@ -24,7 +24,7 @@ function Button({ type = "button_primary", primaryType = "--rolezeiro", text, ha
         <>
             <button 
             className={`button ${type} ${primaryType ?? ""}`}
-            onClick={() => handleClick}
+            onClick={() => handleClick()}
             >{text}</button>
         </>
     );

@@ -1,11 +1,34 @@
 .carousel {
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     .carousel__inner {
         display: flex;
         align-items: center;
+        justify-content: center;
+
+        position: relative;
+
+        width: 60vw;
+        height: 60vw;
     }
 
     .inner__image {
+        position: absolute;
+
+        .inner__image__selected {
+
+        }
+
+        .inner__image__unselected {
+            transition: ease-out .5s;
+
+            filter: blur(3px);
+            -webkit-filter: blur(3px);
+        }
+
         img {
             display: block;
 
@@ -14,7 +37,7 @@
             width: 230px;
             height: 230px;
 
-            margin: 0 1.5em;
+            margin: 0 .5em;
 
             border-radius: 1em;
         }
