@@ -59,10 +59,10 @@ function Carousel({ images }: CarouselProps) {
                         images.map((image, index) => (
                             <motion.figure
                                 className={`inner__image`}
-                                initial={{ scale: 0 }}
+                                initial={{ scale: 0}}
                                 animate={{
                                     rotate: 0,
-                                    left: `${(index - targetedPosition) * 60}vw`,
+                                    left: `${(index - targetedPosition) * 400}px`,
                                     scale: index === targetedPosition ? 1 : 0.8,
                                 }}
                                 transition={{
@@ -77,19 +77,19 @@ function Carousel({ images }: CarouselProps) {
                         ))}
                 </motion.section>
 
-                <section className="carousel__sliders">
-                    {images.map((_, index) => {
-                        return (
-                            <button className={`button-container__button${index !== targetedPosition ? "--unselected" : "--selected"}`} onClick={() => {
-                                    if (index !== targetedPosition) {
-                                        setTargetedPosition(index);
-                                    }
-                                }} />
-                        );
-                    })}
-                </section>
 
             </motion.section>
+            <section className="carousel__sliders">
+                {images.map((_, index) => {
+                    return (
+                        <button className={`button-container__button${index !== targetedPosition ? "--unselected" : "--selected"}`} onClick={() => {
+                            if (index !== targetedPosition) {
+                                setTargetedPosition(index);
+                            }
+                        }} />
+                    );
+                })}
+            </section>
         </div>
     );
 }

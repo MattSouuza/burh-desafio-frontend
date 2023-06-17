@@ -20,8 +20,20 @@
 
 .button-primary {
     background: $rolezeiro-pink;
+    transition: ease-in-out .5s;
+}
+
+.button-primary:hover {
+    background: $rolezeiro-pink-hover;
+    transition: ease-in-out .5s;
 }
 
 .button-secondary {
     background: $anunciante-blue;
+    transition: ease-in-out .5s;
+}
+
+.button-secondary:hover {
+    background: $anunciante-blue-hover;
+    transition: ease-in-out .5s;
 }

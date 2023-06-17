@@ -1,7 +1,13 @@
 @import '../../scss/colors';
 
 .swipeable {
-    width: fit-content;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .swipeable__carousel {
@@ -9,29 +15,41 @@
     margin-top: 35px;
 
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 
     width: 100%;
+    height: 100%;
 
     .carousel__inner {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+
+        position: relative;
+    }
+
+    .inner__image {
+
         display: flex;
         align-items: center;
         justify-content: center;
 
-        position: relative;
+        width: 100%;
+        height: 60%;
 
-        width: 60vw;
-        height: 60vw;
-    }
-
-    .inner__image {
         position: absolute;
 
         .inner__image__selected {
-            -moz-box-shadow: 0 0 70px #ffffffdf;
-            -webkit-box-shadow: 0 0 70px #ffffffdf;
-            box-shadow: 0 0 70px #ffffffdf;
+            -moz-box-shadow: 0 0 100px #ffffff;
+            ;
+            -webkit-box-shadow: 0 0 100px #ffffff;
+            ;
+            box-shadow: 0 0 100px #ffffff;
+
+            transition: ease-in .3s;
         }
 
         .inner__image__unselected {
@@ -52,35 +70,63 @@
             border-radius: 1em;
         }
     }
+}
 
-    .carousel__sliders {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
+.carousel__sliders {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 
-        margin-top: 36px;
+    margin-top: 36px;
 
-        width: 70%;
+    min-width: 200px;
 
-        .button-container__button--selected {
-            width: 50px;
-            height: 23px;
+    .button-container__button--selected {
+        width: 50px;
+        height: 23px;
 
-            border: none;
-            border-radius: .5em;
+        cursor: pointer;
 
-            background-color: $showtime-white;
+        z-index: 1;
+
+        border: none;
+        border-radius: .5em;
+
+        background-color: $showtime-white;
+    }
+
+    .button-container__button--unselected {
+        width: 26px;
+        height: 14px;
+
+        cursor: pointer;
+
+        border: none;
+        border-radius: .25em;
+
+        background-color: $showtime-white;
+        opacity: 60%;
+    }
+}
+
+@media (max-height: 700px) {
+    .swipeable__carousel {
+        .inner__image {
+            img {
+                width: 130px;
+                height: 130px;
+            }
         }
+    }
+}
 
-        .button-container__button--unselected {
-            width: 26px;
-            height: 14px;
-
-            border: none;
-            border-radius: .25em;
-
-            background-color: $showtime-white;
-            opacity: 60%;
+@media (min-width: 1000px) {
+    .swipeable__carousel {
+        .inner__image {
+            img {
+                width: 330px;
+                height: 330px;
+            }
         }
     }
 }
