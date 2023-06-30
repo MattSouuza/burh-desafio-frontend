@@ -20,6 +20,9 @@ const HomeRolezeiro = () => {
                     <EventCard name="Anime Friends" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
                     <EventCard name="Bailão" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
                     <EventCard name="Show da Gloria" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
+                    <EventCard name="Anime Friends" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
+                    <EventCard name="Bailão" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
+                    <EventCard name="Show da Gloria" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
                 </section>
             </section>
         </main>
