@@ -1,0 +1,87 @@
+@import '../../scss/colors';
+
+@mixin mobile-page-spacing {
+    padding: 0 40px;
+
+    box-sizing: border-box;
+}
+
+.register-event {
+    height: 100%;
+    width: 100vw;
+    min-height: 100%;
+
+    background: $showtime-white;
+
+    display: flex;
+    flex-direction: column;
+
+    .register-event__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        background: $anunciante-blue;
+
+        height: 5em;
+
+        @include mobile-page-spacing();
+
+        color: $showtime-white;
+    }
+
+    .register-event__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        height: 100%;
+
+        @include mobile-page-spacing();
+
+        .content__title {
+            width: 100%;
+            max-width: 50em;
+
+            box-sizing: border-box;
+
+            h1 {
+                font-size: 24px;
+
+                margin-bottom: 1em;
+            }
+
+            p {
+                max-width: 350px;
+
+                margin-bottom: 2em;
+            }
+
+            .title__button-wrapper {
+                justify-self: center;
+            }
+        }
+
+        .content__form {
+
+            align-self: center;
+
+            display: flex;
+            flex-direction: column;
+
+            width: 100%;
+            max-width: 50em;
+
+            box-sizing: border-box;
+
+            > * {
+                margin-top: 1.5em;
+            }
+
+            > :last-child {
+                margin-top: 3em;
+            }
+        }
+    }
+}

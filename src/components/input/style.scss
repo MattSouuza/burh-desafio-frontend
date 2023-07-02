@@ -1,0 +1,86 @@
+@import '../../scss/colors';
+
+@mixin placeholder {
+    color: $letsrock-black;
+    font-weight: 500;
+
+    transition: ease-out .5s;
+}
+
+@mixin hidden-placeholder {
+    color: transparent;
+
+    transition: ease-out .5s;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    .input-wrapper__label {
+        position: relative;
+        top: 40px;
+        z-index: 0;
+        transition: top ease-out .5s;
+
+        color: $letsrock-black;
+        font-weight: bold;
+    }
+
+    .input-wrapper__field,
+    .input-wrapper__field--textarea {
+        border: none;
+        border-radius: 0;
+
+        padding: 0 1.2em;
+
+        min-width: 150px;
+        min-height: 56px;
+
+        background: $known-grey;
+
+        z-index: 1;
+    }
+
+    .input-wrapper__field--textarea {
+        padding: 1em;
+
+        resize: vertical;
+    }
+
+    ::placeholder {
+        @include placeholder();
+    }
+
+    :-ms-input-placeholder {
+        @include placeholder();
+    }
+
+    ::-ms-input-placeholder {
+        @include placeholder();
+    }
+}
+
+.input-wrapper:focus-within {
+    .input-wrapper__label {
+        top: 0;
+    }
+
+    .input-wrapper__field, .input-wrapper__field--textarea {
+        outline: none;
+    }
+
+    ::placeholder {
+        @include hidden-placeholder();
+    }
+
+    :-ms-input-placeholder {
+        @include hidden-placeholder();
+    }
+
+    ::-ms-input-placeholder {
+        @include hidden-placeholder();
+    }
+}
