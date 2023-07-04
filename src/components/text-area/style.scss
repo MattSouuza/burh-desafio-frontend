@@ -1,0 +1,86 @@
+@import '../../scss/colors';
+
+@mixin placeholder {
+    color: $letsrock-black;
+    font-weight: 500;
+
+    transition: ease-out .5s;
+}
+
+@mixin hidden-placeholder {
+    color: transparent;
+
+    transition: ease-out .5s;
+}
+
+.textarea-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    .textarea-wrapper__label {
+        position: relative;
+        top: 40px;
+        z-index: 0;
+        transition: top ease-out .5s;
+
+        color: $letsrock-black;
+        font-weight: bold;
+    }
+
+    .textarea-wrapper__field,
+    .textarea-wrapper__field--textarea {
+        border: none;
+        border-radius: 0;
+
+        padding: 0 1.2em;
+
+        min-width: 150px;
+        min-height: 56px;
+
+        background: $known-grey;
+
+        z-index: 1;
+    }
+
+    .textarea-wrapper__field--textarea {
+        padding: 1em;
+
+        resize: vertical;
+    }
+
+    ::placeholder {
+        @include placeholder();
+    }
+
+    :-ms-textarea-placeholder {
+        @include placeholder();
+    }
+
+    ::-ms-textarea-placeholder {
+        @include placeholder();
+    }
+}
+
+.textarea-wrapper:focus-within {
+    .textarea-wrapper__label {
+        top: 0;
+    }
+
+    .textarea-wrapper__field, .textarea-wrapper__field--textarea {
+        outline: none;
+    }
+
+    ::placeholder {
+        @include hidden-placeholder();
+    }
+
+    :-ms-textarea-placeholder {
+        @include hidden-placeholder();
+    }
+
+    ::-ms-textarea-placeholder {
+        @include hidden-placeholder();
+    }
+}

@@ -10,7 +10,6 @@ import "./style.scss"
 
 function Startup() {
 
-
     return (
         <body className="startup">
             <div className="startup__initial">

@@ -6,25 +6,18 @@ import Button from "../../components/button";
 import Input from "../../components/input";
 
 import "./style.scss";
+import TextArea from "../../components/text-area";
 
-// const InputsChildren = forwardRef((props, ref) => {
-//     return (
-//         <>
-//             <Input name="Nome" />
-//             <Input name="Data de Início" type="date" />
-//             <Input name="Descrição" type="textarea" required={false} />
-//         </>
-//     );
-// })
+type FormValues = {
+
+}
 
 const RegisterEvent = () => {
 
-    const { register } = useForm({
-        defaultValues: {
-            Nome: "Evento Top",
-            ["Data de Início"]: "2023-08-10",
-            ["Descrição"]: "Vai ser muito bom!"
-        }
+    
+
+    const { register, formState: { errors }, handleSubmit } = useForm<FormValues>({
+        reValidateMode: "onChange"
     });
 
     return (
@@ -40,11 +33,11 @@ const RegisterEvent = () => {
                     <p>Cadastre o seu próximo evento</p>
                 </section>
 
-                <form className="content__form">
+                <form className="content__form" onSubmit={handleSubmit(() => {})}>
 
-                    <Input name="Nome" />
-                    <Input name="Data de Início" type="date" />
-                    <Input name="Descrição" type="textarea" required={false} />
+                    <Input name="Nome"/>
+                    <Input name="Data de Início" type="date"/>
+                    <TextArea name="Descrição" required={false}/>
 
                     <Button text="Anunciar" type="button-primary" primaryType="--anunciante" handleClick={() => { }} />
                 </form>

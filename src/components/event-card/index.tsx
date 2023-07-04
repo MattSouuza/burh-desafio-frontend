@@ -18,7 +18,7 @@ function getRandomImg(imgs: Array<string>) {
     return imgs[Math.floor((Math.random() * imgs.length))];
 }
 
-interface EventCardProps {
+type EventCardProps = {
     name: string,
     date: Date,
     description?: string,

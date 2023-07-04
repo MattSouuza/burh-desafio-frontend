@@ -5,7 +5,7 @@ import { useSwipeable } from "react-swipeable";
 import "./style.scss"
 import Button from "../button";
 
-interface CarouselProps {
+type CarouselProps = {
     images: Array<string>
 }
 

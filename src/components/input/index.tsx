@@ -8,29 +8,13 @@ type InputProps = {
     required?: boolean
 }
 
-const Input = ({ name, type = "text", required = true }: InputProps) => {
-    // const Input = React.forwardRef(({ name, type = "text", required = true }: InputProps, ref) => {
-
-    // const inputElement = useRef<HTMLInputElement | null>(null);
-    // const textareaElement = useRef<HTMLTextAreaElement | null>(null);
-
-    // useImperativeHandle(ref, () => {
-    //     return {
-    //         value: inputElement.current ? inputElement.current.value : "",
-    //         setValue: (value: string) => {
-    //             inputElement.current && (inputElement.current.value = value);
-    //         },
-    //     };
-    // });
-
+const Input = React.forwardRef<HTMLInputElement, InputProps>(({ name, type = "text", required = true }: InputProps, ref) => {
     return (
         <section className="input-wrapper">
             <label className="input-wrapper__label" htmlFor={name}>{name}</label>
-            {type === "textarea" ?
-                <textarea className="input-wrapper__field--textarea" placeholder={name} required={required} name={name} /> :
-                <input className="input-wrapper__field" type={type} placeholder={name} required={required} />}
+            <input className="input-wrapper__field" type={type} placeholder={name} required={required} ref={ref} />
         </section>
     );
-}
+})
 
 export default Input;
