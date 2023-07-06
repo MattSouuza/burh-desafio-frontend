@@ -1,24 +1,38 @@
-import { forwardRef } from "react";
+import { useRef, FormEvent } from "react";
 
-import { useForm } from "react-hook-form";
-
+import TextArea from "../../components/text-area";
 import Button from "../../components/button";
 import Input from "../../components/input";
 
 import "./style.scss";
-import TextArea from "../../components/text-area";
 
-type FormValues = {
-
+type FormEventValues = {
+    name: string,
+    date: string | Date,
+    description: string,
 }
 
 const RegisterEvent = () => {
 
-    
+    const nameInput = useRef<HTMLInputElement>(null);
+    const dateInput = useRef<HTMLInputElement>(null);
+    const descriptionInput = useRef<HTMLTextAreaElement>(null);
 
-    const { register, formState: { errors }, handleSubmit } = useForm<FormValues>({
-        reValidateMode: "onChange"
-    });
+    const onSubmit = (e: FormEvent) => {
+        e.preventDefault();
+
+        if (!nameInput?.current || !dateInput?.current || !descriptionInput?.current) {
+            return false;
+        }
+
+        const requestBody: FormEventValues = {
+            name: nameInput.current.value,
+            date: dateInput.current.value,
+            description: descriptionInput.current.value
+        }      
+        
+        console.log(requestBody);
+    }
 
     return (
         <main className="register-event">
@@ -33,13 +47,13 @@ const RegisterEvent = () => {
                     <p>Cadastre o seu próximo evento</p>
                 </section>
 
-                <form className="content__form" onSubmit={handleSubmit(() => {})}>
+                <form className="content__form" onSubmit={(e) => onSubmit(e)}>
 
-                    <Input name="Nome"/>
-                    <Input name="Data de Início" type="date"/>
-                    <TextArea name="Descrição" required={false}/>
+                    <Input label="Nome" ref={nameInput}/>
+                    <Input label="Data de Início" type="date" ref={dateInput}/>
+                    <TextArea label="Descrição" required={false} ref={descriptionInput}/>
 
-                    <Button text="Anunciar" type="button-primary" primaryType="--anunciante" handleClick={() => { }} />
+                    <Button text="Anunciar" type="button-primary" primaryType="--anunciante" />
                 </form>
 
             </section>

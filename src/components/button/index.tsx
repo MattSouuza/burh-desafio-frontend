@@ -4,7 +4,7 @@ type ButtonProps = {
     type: "button-primary" | "button-secondary";
     primaryType?: "--rolezeiro" | "--anunciante",
     text: string,
-    handleClick: Function // todo: substituir type Function pois é problemático e não recomendado
+    handleClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
 function Button({ type = "button-primary", primaryType, text, handleClick }: ButtonProps) {
@@ -12,8 +12,7 @@ function Button({ type = "button-primary", primaryType, text, handleClick }: But
         <>
             <button 
             className={`button ${type} ${type.includes("primary") ? primaryType : ""}`}
-            onClick={() => handleClick()}
-            type="button"
+            onClick={handleClick}
             >{text}</button>
         </>
     );

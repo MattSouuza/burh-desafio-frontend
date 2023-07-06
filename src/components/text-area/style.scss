@@ -29,12 +29,11 @@
         font-weight: bold;
     }
 
-    .textarea-wrapper__field,
-    .textarea-wrapper__field--textarea {
+    .textarea-wrapper__field {
         border: none;
         border-radius: 0;
 
-        padding: 0 1.2em;
+        padding: 1em 1.2em;
 
         min-width: 150px;
         min-height: 56px;
@@ -42,12 +41,12 @@
         background: $known-grey;
 
         z-index: 1;
-    }
-
-    .textarea-wrapper__field--textarea {
-        padding: 1em;
 
         resize: vertical;
+    }
+
+    .textarea-wrapper__field {
+        
     }
 
     ::placeholder {
