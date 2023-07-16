@@ -1,13 +1,13 @@
 import "./style.scss"
 
 type ButtonProps = {
-    type: "button-primary" | "button-secondary";
+    type?: "button-primary" | "button-secondary";
     primaryType?: "--rolezeiro" | "--anunciante",
     text: string,
     handleClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
 
-function Button({ type = "button-primary", primaryType, text, handleClick }: ButtonProps) {
+function Button({ type = "button-primary", primaryType = "--rolezeiro", text, handleClick }: ButtonProps) {
     return (
         <>
             <button 

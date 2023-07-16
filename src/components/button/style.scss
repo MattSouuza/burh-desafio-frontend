@@ -18,22 +18,25 @@
     cursor: pointer;
 }
 
-.button-primary.--rolezeiro {
-    background: $rolezeiro-pink;
+.button-primary {
     transition: ease-in-out .5s;
 }
 
-.button-primary.--rolezeiro:hover {
+.--rolezeiro {
+    background: $rolezeiro-pink;
+}
+
+.--rolezeiro:hover {
     background: $rolezeiro-pink-hover;
     transition: ease-in-out .5s;
 }
 
-.button-primary.--anunciante{
+.--anunciante {
     background: $anunciante-blue;
     transition: ease-in-out .5s;
 }
 
-.button-primary.--anunciante:hover {
+.--anunciante:hover {
     background: $anunciante-blue-hover;
     transition: ease-in-out .5s;
 }

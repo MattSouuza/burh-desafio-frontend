@@ -7,7 +7,7 @@
 }
 
 .home-anunciante {
-    width: 100vw;
+    width: 100%;
     min-height: 100%;
 
     background: $showtime-white;
@@ -15,19 +15,19 @@
     display: flex;
     flex-direction: column;
 
-    .home-anunciante__header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    // .home-anunciante__header {
+    //     display: flex;
+    //     justify-content: space-between;
+    //     align-items: center;
 
-        background: $anunciante-blue;
+    //     background: $anunciante-blue;
 
-        height: 5em;
+    //     height: 5em;
 
-        @include mobile-page-spacing();
+    //     @include mobile-page-spacing();
 
-        color: $showtime-white;
-    }
+    //     color: $showtime-white;
+    // }
 
     .home-anunciante__content {
         display: flex;

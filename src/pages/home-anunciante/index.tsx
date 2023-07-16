@@ -1,15 +1,24 @@
+import { useNavigate } from "react-router-dom";
+
 import Button from "../../components/button";
 import EventCard from "../../components/event-card";
 
 import "./style.scss";
 
 const HomeAnunciante = () => {
+
+    const navigate = useNavigate();
+
+    const navigateTo = (path: string) => {
+        navigate(path);
+    }
+
     return (
         <main className="home-anunciante">
-            <header className="home-anunciante__header">
+            {/* <header className="home-anunciante__header">
                 <span className="header__go-back">Voltar</span>
                 <p className="header__go-enjoy">Quero curtir!</p>
-            </header>
+            </header> */}
 
             <section className="home-anunciante__content">
 
@@ -20,7 +29,7 @@ const HomeAnunciante = () => {
                     </header>
 
                     <section className="title__button-wrapper">
-                        <Button text="Anunciar Evento +" type="button-primary" primaryType="--anunciante" handleClick={() => { }} />
+                        <Button text="Anunciar Evento +" type="button-primary" primaryType="--anunciante" handleClick={() => navigateTo("/anunciante/register-event")} />
                     </section>
                 </section>
 

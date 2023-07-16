@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom"
+
 import Button from "../../components/button";
 import Carousel from "../../components/carousel";
 
@@ -9,6 +11,12 @@ import roleTopLogo from "../../assets/prototipo-logo.png";
 import "./style.scss"
 
 function Startup() {
+
+    const navigate = useNavigate();
+
+    const navigateTo = (path: string) => {
+        navigate(path);
+    }
 
     return (
         <body className="startup">
@@ -28,10 +36,10 @@ function Startup() {
                     <article className="wrapper__text">
                         <h1>Bem-vindo(a) à RolêTop,</h1>
                         <p>saia do tédio agora ou ajude outros a sairem! Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <section className="wrapper__buttons">
-                        <Button type="button-primary" text="Quero curtir!" handleClick={() => { }} />
-                        <Button type="button-secondary" text="Quero anunciar!" handleClick={() => { }} />
-                    </section>
+                        <section className="wrapper__buttons">
+                            <Button text="Quero curtir!" handleClick={() => navigateTo("/rolezeiro")} />
+                            <Button primaryType="--anunciante" text="Quero anunciar!" handleClick={() => navigateTo("/anunciante")} />
+                        </section>
                     </article>
                 </div>
             </section>

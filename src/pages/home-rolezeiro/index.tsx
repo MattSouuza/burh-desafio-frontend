@@ -1,13 +1,14 @@
+import { Outlet } from "react-router-dom";
 import EventCard from "../../components/event-card";
 import "./style.scss";
 
 const HomeRolezeiro = () => {
     return (
         <main className="home-rolezeiro">
-            <header className="home-rolezeiro__header">
+            {/* <header className="home-rolezeiro__header">
                 <span className="header__go-back">Voltar</span>
                 <p className="header__go-anounce">Quero anunciar!</p>
-            </header>
+            </header> */}
 
             <section className="home-rolezeiro__content">
 

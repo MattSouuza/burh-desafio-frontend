@@ -36,9 +36,9 @@ const RegisterEvent = () => {
 
     return (
         <main className="register-event">
-            <header className="register-event__header">
+            {/* <header className="register-event__header">
                 <span className="header__go-back">Voltar</span>
-            </header>
+            </header> */}
 
             <section className="register-event__content">
 
