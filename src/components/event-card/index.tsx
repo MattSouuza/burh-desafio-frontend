@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../button";
 import "./style.scss";
 
@@ -19,14 +20,29 @@ function getRandomImg(imgs: Array<string>) {
 }
 
 type EventCardProps = {
+    id: string
     name: string,
     date: Date,
     description?: string,
-    confirmedUsers: Array<string>,
-    currentHomePageType: string
+    currentHomePageType: "rolezeiro" | "anunciante"
 }
 
-const EventCard = ({ name, date, description, confirmedUsers, currentHomePageType }: EventCardProps) => {
+const EventCard = ({ id, name, date, description, currentHomePageType }: EventCardProps) => {
+
+    const navigate = useNavigate();
+    const navigateTo = (path: string) => {
+        navigate(path);
+    }
+
+    const handleConfirm = () => {
+
+    }
+
+    const buttonAction = {
+        title: currentHomePageType === "anunciante" ? "Editar Evento" : "Corfirmar Presença",
+        action: currentHomePageType === "anunciante" ? navigateTo : handleConfirm
+    }
+
     return (
         <div className="event-card">
             <figure className="event-card__img-wrapper">
@@ -35,10 +51,10 @@ const EventCard = ({ name, date, description, confirmedUsers, currentHomePageTyp
             <section className="event-card__content">
                 <section className="content_main-info">
                     <h2>{name}</h2>
-                    <h3>{date.toUTCString()}</h3>
+                    <h3>{new Date(date).toUTCString()}</h3>
                 </section>
                 <p>{description ?? "Não há descrição"}</p>
-                <Button text="Corfirmar Presença" type="button-primary" primaryType={currentHomePageType === "rolezeiro" ? "--rolezeiro" : "--anunciante"} handleClick={() => { }} />
+                <Button text={buttonAction.title} type="button-primary" primaryType={currentHomePageType === "rolezeiro" ? "--rolezeiro" : "--anunciante"} handleClick={() => { }} />
             </section>
         </div>
     );

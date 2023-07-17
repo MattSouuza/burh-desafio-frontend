@@ -1,3 +1,5 @@
+@import '../../scss/colors';
+
 #loading {
     height: 100%;
     width: 100%;
@@ -9,11 +11,32 @@
     position: fixed;
     top: 0;
 
-
-    color: #fff;
-    font-size: 30px;
-
     background: #00000074;
 
     z-index: 10;
+
+    @keyframes spinner {
+        0% {
+            transform: rotate(0deg);
+            
+            border: 10px solid $rolezeiro-pink;
+            border-top: 10px solid $rolezeiro-pink-hover;
+        }
+
+        100% {
+            transform: rotate(360deg);
+
+            border: 10px solid $anunciante-blue;
+            border-top: 10px solid $anunciante-blue-hover;
+        }
+    }
+
+    .loading__spinner {
+        width: 50px;
+        height: 50px;
+
+        border-radius: 50%;
+
+        animation: spinner 1s linear infinite;
+    }
 }

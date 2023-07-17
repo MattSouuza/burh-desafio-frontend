@@ -36,7 +36,7 @@ const RegisterEvent = () => {
         }
 
         setLoading(true);
-        
+
         const requestBody: FormEventValues = {
             name: nameInput.current.value,
             date: dateInput.current.value,
@@ -45,12 +45,14 @@ const RegisterEvent = () => {
 
         if (!requestBody.name || !requestBody.date) {
             setError("Há campos sem valor!");
+
+            setLoading(false);
             return;
         }
 
         console.log(requestBody);
 
-        const { data, error} = await sendRequest({
+        const { data, error } = await sendRequest({
             url: `${import.meta.env.VITE_CRUDCRUD_URL}/events`,
             method: "post",
             payload: requestBody,
@@ -63,6 +65,8 @@ const RegisterEvent = () => {
         if (error) {
             setError("Não foi possível cadastrar o evento...");
             console.log("O erro que ocorreu:", error);
+            
+            setLoading(false);
             return;
         }
 
@@ -77,7 +81,7 @@ const RegisterEvent = () => {
                 <span className="header__go-back">Voltar</span>
             </header> */}
 
-            {loading ? <Loading/> : null}
+            {loading ? <Loading /> : null}
             {error ? <h1>{error}</h1> : null}
 
             <section className="register-event__content">

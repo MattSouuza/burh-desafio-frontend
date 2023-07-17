@@ -1,4 +1,3 @@
-import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 type FetchProps = {
@@ -21,12 +20,6 @@ const useAxios = () => {
         return { data: null, error};
       }
   }
-
-  // useEffect(() => {
-  //   if (fetchWhenCalled) {
-  //     fetch();
-  //   }
-  // }, [fetch]);
 
   return {
     sendRequest
