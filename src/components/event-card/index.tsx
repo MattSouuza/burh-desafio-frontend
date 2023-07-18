@@ -24,10 +24,11 @@ type EventCardProps = {
     name: string,
     date: Date,
     description?: string,
+    subscribed: boolean,
     currentHomePageType: "rolezeiro" | "anunciante"
 }
 
-const EventCard = ({ id, name, date, description, currentHomePageType }: EventCardProps) => {
+const EventCard = ({ id, name, date, description, subscribed, currentHomePageType }: EventCardProps) => {
 
     const navigate = useNavigate();
     const navigateTo = (path: string) => {
@@ -39,7 +40,7 @@ const EventCard = ({ id, name, date, description, currentHomePageType }: EventCa
     }
 
     const buttonAction = {
-        title: currentHomePageType === "anunciante" ? "Editar Evento" : "Corfirmar Presença",
+        title: currentHomePageType === "anunciante" ? "Editar Evento" : !subscribed ? "Corfirmar Presença" : subscribed ? "Cancelar Presença" : "Erro",
         action: currentHomePageType === "anunciante" ? navigateTo : handleConfirm
     }
 

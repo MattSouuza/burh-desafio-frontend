@@ -1,0 +1,20 @@
+@import '../../scss/colors';
+
+.error-icon {
+    font-size: 150px;
+    font-weight: bold;
+}
+
+.--error-icon-anunciante {
+    color: $anunciante-blue;
+}
+
+.--error-icon-rolezeiro {
+    color: $rolezeiro-pink;
+}
+
+.error-text {
+    font-size: 24px;
+
+    margin-bottom: 1em;
+}

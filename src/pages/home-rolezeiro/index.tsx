@@ -1,8 +1,27 @@
-import { Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+import useGetEvents from "../../hooks/use-get-events";
+
+import EventProps from "../../types/event-props";
+
 import EventCard from "../../components/event-card";
+import Loading from "../../components/loading";
+import ErrorMessage from "../../components/error-message";
+
 import "./style.scss";
 
 const HomeRolezeiro = () => {
+
+    const [events, setEvents] = useState<Array<EventProps>>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<any>(null);
+
+    const getEvents = useGetEvents({ setError, setEvents, setLoading });
+
+    useEffect(() => {
+        getEvents();
+    }, [])
+
     return (
         <main className="home-rolezeiro">
             {/* <header className="home-rolezeiro__header">
@@ -12,18 +31,30 @@ const HomeRolezeiro = () => {
 
             <section className="home-rolezeiro__content">
 
-                <section className="content__title">
-                    <h1>Eventos do Momento!</h1>
-                    <p>saia do tédio agora ou ajude outros a sairem! Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </section>
+                {
+                    loading ?
+                        <Loading />
+                        :
+                        <section className="content__title">
+                            {
+                                error ?
+                                    <ErrorMessage text={error} currentPage="rolezeiro" />
+                                    :
+                                    events?.length > 0 ?
+                                        <>
+                                            <h1>Eventos do Momento!</h1>
+                                            <p>saia do tédio agora ou ajude outros a sairem! Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        </>
+                                        :
+                                        <>
+                                            <ErrorMessage text="Ainda não há nenhum evento rolando" currentPage="rolezeiro" />
+                                        </>
+                            }
+                        </section>
+                }
 
                 <section className="content__events">
-                    <EventCard name="Anime Friends" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
-                    <EventCard name="Bailão" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
-                    <EventCard name="Show da Gloria" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
-                    <EventCard name="Anime Friends" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
-                    <EventCard name="Bailão" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
-                    <EventCard name="Show da Gloria" date={new Date()} confirmedUsers={["id"]} currentHomePageType="rolezeiro" />
+                    {events?.map((event: EventProps) => <EventCard id={event.id} name={event.name} date={event.date} description={event.description} subscribed={event.subscribed} currentHomePageType="rolezeiro" />)}
                 </section>
             </section>
         </main>

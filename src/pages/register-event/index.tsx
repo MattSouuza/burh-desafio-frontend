@@ -12,6 +12,7 @@ type FormEventValues = {
     name: string,
     date: string | Date,
     description: string,
+    subscribed: boolean
 }
 
 const RegisterEvent = () => {
@@ -40,7 +41,8 @@ const RegisterEvent = () => {
         const requestBody: FormEventValues = {
             name: nameInput.current.value,
             date: dateInput.current.value,
-            description: descriptionInput.current.value
+            description: descriptionInput.current.value,
+            subscribed: false
         }
 
         if (!requestBody.name || !requestBody.date) {

@@ -10,9 +10,6 @@ type FetchProps = {
 const useAxios = () => {
 
   const sendRequest = async ({url, method, payload = {}, headers = { accept: '*/*' }}: FetchProps) => {
-
-      console.log("useAxios", payload);
-
       try {  
         const result = await axios[method](url, payload, headers);
         return { data: result.data, error: null};

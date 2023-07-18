@@ -53,12 +53,6 @@
 
             .title__text {
 
-                .text__no-events-icon {
-                    color: $anunciante-blue;
-                    font-size: 150px;
-                    font-weight: bold;
-                }
-
                 h1 {
                     font-size: 24px;
 
@@ -81,14 +75,14 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            
+
             height: 100%;
 
             margin: 0;
 
             .title__button-wrapper {
                 display: grid;
-                
+
                 max-width: 426px;
                 width: 100%;
             }
