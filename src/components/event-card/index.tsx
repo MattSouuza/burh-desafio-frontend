@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom";
+
+import EventProps from "../../types/event-props";
+
 import Button from "../button";
+
 import "./style.scss";
 
 const eventImgs = [
@@ -19,16 +23,11 @@ function getRandomImg(imgs: Array<string>) {
     return imgs[Math.floor((Math.random() * imgs.length))];
 }
 
-type EventCardProps = {
-    id: string
-    name: string,
-    date: Date,
-    description?: string,
-    subscribed: boolean,
+interface EventCardProps extends EventProps {
     currentHomePageType: "rolezeiro" | "anunciante"
 }
 
-const EventCard = ({ id, name, date, description, subscribed, currentHomePageType }: EventCardProps) => {
+const EventCard = ({ id, name, date, description, subscribed, expectedPublic, currentHomePageType }: EventCardProps) => {
 
     const navigate = useNavigate();
     const navigateTo = (path: string) => {
@@ -53,6 +52,7 @@ const EventCard = ({ id, name, date, description, subscribed, currentHomePageTyp
                 <section className="content_main-info">
                     <h2>{name}</h2>
                     <h3>{new Date(date).toUTCString()}</h3>
+                    <h4>{expectedPublic}</h4>
                 </section>
                 <p>{description ?? "Não há descrição"}</p>
                 <Button text={buttonAction.title} type="button-primary" primaryType={currentHomePageType === "rolezeiro" ? "--rolezeiro" : "--anunciante"} handleClick={() => { }} />

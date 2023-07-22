@@ -54,7 +54,7 @@ const HomeRolezeiro = () => {
                 }
 
                 <section className="content__events">
-                    {events?.map((event: EventProps) => <EventCard id={event.id} name={event.name} date={event.date} description={event.description} subscribed={event.subscribed} currentHomePageType="rolezeiro" />)}
+                    {events?.map((event: EventProps) => <EventCard id={event.id} name={event.name} date={event.date} expectedPublic={event.expectedPublic} description={event.description} subscribed={event.subscribed} currentHomePageType="rolezeiro" />)}
                 </section>
             </section>
         </main>

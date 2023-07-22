@@ -65,7 +65,7 @@ const HomeAnunciante = () => {
                         </section>
 
                         <section className="content__events">
-                            {events?.map((event: EventProps) => <EventCard id={event.id} name={event.name} date={event.date} description={event.description} subscribed={event.subscribed} currentHomePageType="anunciante" />)}
+                            {events?.map((event: EventProps) => <EventCard id={event.id} name={event.name} date={event.date} expectedPublic={event.expectedPublic} description={event.description} subscribed={event.subscribed} currentHomePageType="anunciante" />)}
                         </section>
                     </section>
             }

@@ -7,13 +7,9 @@ import Input from "../../components/input";
 import "./style.scss";
 import useAxios from "../../hooks/use-axios";
 import Loading from "../../components/loading";
+import EventProps from "../../types/event-props";
 
-type FormEventValues = {
-    name: string,
-    date: string | Date,
-    description: string,
-    subscribed: boolean
-}
+interface FormEventValues extends Omit<EventProps, "id"> {}
 
 const RegisterEvent = () => {
 
@@ -26,12 +22,13 @@ const RegisterEvent = () => {
 
     const nameInput = useRef<HTMLInputElement>(null);
     const dateInput = useRef<HTMLInputElement>(null);
+    const expectedPublicInput = useRef<HTMLInputElement>(null);
     const descriptionInput = useRef<HTMLTextAreaElement>(null);
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
-        if (!nameInput?.current || !dateInput?.current || !descriptionInput?.current) {
+        if (!nameInput?.current || !dateInput?.current || !descriptionInput?.current || !expectedPublicInput?.current) {
             setError("Há campos sem valor!");
             return;
         }
@@ -40,7 +37,8 @@ const RegisterEvent = () => {
 
         const requestBody: FormEventValues = {
             name: nameInput.current.value,
-            date: dateInput.current.value,
+            date: new Date(dateInput.current.value),
+            expectedPublic: Number(expectedPublicInput.current.value),
             description: descriptionInput.current.value,
             subscribed: false
         }
@@ -62,6 +60,7 @@ const RegisterEvent = () => {
 
         nameInput.current.value = "";
         dateInput.current.value = "";
+        expectedPublicInput.current.value = "";
         descriptionInput.current.value = "";
 
         if (error) {
@@ -95,8 +94,9 @@ const RegisterEvent = () => {
 
                 <form className="content__form" onSubmit={(e) => onSubmit(e)}>
 
-                    <Input label="Nome" ref={nameInput} />
-                    <Input label="Data de Início" type="date" ref={dateInput} />
+                    <Input label="Nome *" ref={nameInput} />
+                    <Input label="Data de Início *" type="date" ref={dateInput} />
+                    <Input label="Público Esperado *" type="number" ref={dateInput} />
                     <TextArea label="Descrição" required={false} ref={descriptionInput} />
 
                     <Button text="Anunciar" type="button-primary" primaryType="--anunciante" />
