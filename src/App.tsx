@@ -5,6 +5,7 @@ import HomeRolezeiro from "./pages/home-rolezeiro"
 import RegisterEvent from "./pages/register-event"
 import Startup from "./pages/startup"
 import Header from "./components/header"
+import UpdateEvent from "./pages/update-event"
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/anunciante" element={<Header currentPage="anunciante"/>}>
           <Route index element={<HomeAnunciante />} />
           <Route path="register-event" element={<RegisterEvent />} />
+          <Route path="update-event/:id" element={<UpdateEvent />} />
         </Route>
       </Routes>
     </>

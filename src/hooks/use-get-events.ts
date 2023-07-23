@@ -4,6 +4,10 @@ import useAxios from "./use-axios";
 
 import EventProps from "../types/event-props";
 
+interface EventResponse extends Omit<EventProps, "id"> {
+    _id: string
+}
+
 type useGetEventsProps = {
     setLoading: Dispatch<SetStateAction<boolean>>,
     setEvents: Dispatch<SetStateAction<Array<EventProps>>>,
@@ -31,7 +35,16 @@ const useGetEvents = ({ setError, setLoading, setEvents }: useGetEventsProps) =>
             return;
         }
 
-        setEvents(data);
+        setEvents(data.map((event: EventResponse) => {
+            return {
+                id: event._id,
+                name: event.name,
+                date: event.date,
+                expectedPublic: event.expectedPublic,
+                description: event.description,
+                subscribed: event.subscribed,
+            }
+        }));
 
         setLoading(false);
     }

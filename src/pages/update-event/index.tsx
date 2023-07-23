@@ -1,4 +1,6 @@
-import { useRef, FormEvent, useState } from "react";
+import { useRef, FormEvent, useState, useEffect } from "react";
+
+import { useLocation, useNavigate } from "react-router-dom";
 
 import useAxios from "../../hooks/use-axios";
 
@@ -11,9 +13,14 @@ import Input from "../../components/input";
 
 import "./style.scss";
 
-interface FormEventValues extends Omit<EventProps, "id"> {}
+interface FormEventValues extends Omit<EventProps, "id"> { }
 
-const RegisterEvent = () => {
+const UpdateEvent = () => {
+
+    const location = useLocation();
+    const state = location.state as EventProps;
+
+    const navigate = useNavigate();
 
     const { sendRequest } = useAxios();
 
@@ -26,6 +33,21 @@ const RegisterEvent = () => {
     const dateInput = useRef<HTMLInputElement>(null);
     const expectedPublicInput = useRef<HTMLInputElement>(null);
     const descriptionInput = useRef<HTMLTextAreaElement>(null);
+
+    useEffect(() => {
+        if (!nameInput?.current || !dateInput?.current || !descriptionInput?.current || !expectedPublicInput?.current) {
+            setError("Há campos sem valor!");
+            return;
+        }
+
+        nameInput.current.value = state.name;
+        dateInput.current.value = new Date(state.date).toISOString().split('T')[0];
+        expectedPublicInput.current.value = state.expectedPublic.toString();
+        descriptionInput.current.value = state.description ?? "";
+
+        console.log(dateInput.current.value);
+        
+    }, [])
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -55,39 +77,36 @@ const RegisterEvent = () => {
         console.log(requestBody);
 
         const { data, error } = await sendRequest({
-            url: `${import.meta.env.VITE_CRUDCRUD_URL}/events`,
-            method: "post",
+            url: `${import.meta.env.VITE_CRUDCRUD_URL}/events/${state.id}`,
+            method: "put",
             payload: requestBody,
         });
 
-        nameInput.current.value = "";
-        dateInput.current.value = "";
-        expectedPublicInput.current.value = "";
-        descriptionInput.current.value = "";
-
         if (error) {
-            setError("Não foi possível cadastrar o evento...");
+            setError("Não foi possível atualizar o evento...");
             console.log("O erro que ocorreu:", error);
-            
+
             setLoading(false);
             return;
         }
 
         setLoading(false);
 
+        navigate(-1);
+
         console.log("data", data);
     }
 
     return (
-        <main className="register-event">
-            {/* <header className="register-event__header">
+        <main className="update-event">
+            {/* <header className="update-event__header">
                 <span className="header__go-back">Voltar</span>
             </header> */}
 
             {loading ? <Loading /> : null}
             {error ? <h1>{error}</h1> : null}
 
-            <section className="register-event__content">
+            <section className="update-event__content">
 
                 <section className="content__title">
                     <h1>Anuncie Agora!</h1>
@@ -109,4 +128,4 @@ const RegisterEvent = () => {
     );
 }
 
-export default RegisterEvent;
+export default UpdateEvent;
